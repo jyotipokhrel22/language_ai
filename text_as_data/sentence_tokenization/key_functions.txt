@@ -1,0 +1,26 @@
+When working with sentence segmentation in Python, these are the essential functions and their most important parameters. Choosing between them depends on your speed requirements, accuracy needs, and whether you are working with a single language or multiple languages. For most English-language applications, NLTK's sent_tokenize is the right starting point: it is fast, well-tested, and handles the common cases correctly. For production systems where you need the highest accuracy on complex or domain-specific text, spaCy's full language models provide more sophisticated boundary detection at the cost of higher computational overhead.
+
+nltk.tokenize.sent_tokenize(text, language='english')
+
+text: The input string to segment into sentences
+language: Language model to use. Options include 'english', 'german', 'french', 'spanish', and others. Using the correct language improves accuracy for abbreviations and punctuation conventions
+nltk.tokenize.punkt.PunktSentenceTokenizer(train_text=None)
+
+train_text: Optional training corpus for learning domain-specific abbreviations. When provided, the tokenizer learns abbreviation patterns from this text before segmenting
+Use tokenize(text) method to segment text after training
+spacy.blank(lang).add_pipe('sentencizer')
+
+lang: Language code (e.g., 'en', 'de', 'fr'). Creates a minimal pipeline with only sentence segmentation
+The sentencizer uses punctuation-based rules without requiring a full language model
+spacy.load(model_name)
+
+model_name: Pre-trained model like 'en_core_web_sm'. Full models use dependency parsing for more accurate sentence boundaries
+Access sentences via doc.sents after processing text with nlp(text)
+Custom Segmenter Patterns
+
+When building custom segmenters, key regex patterns include:
+
+URL detection: r'https?://\S+|www\.\S+'
+Email detection: r'\S+@\S+\.\S+'
+Decimal numbers: r'\d+\.\d+'
+Sentence boundaries: r'[.!?]\s+[A-Z]'
