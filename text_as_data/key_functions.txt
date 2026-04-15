@@ -1,0 +1,17 @@
+str.encode(encoding, errors='strict')
+
+encoding: The target encoding (e.g., 'utf-8', 'latin-1', 'ascii')
+errors: How to handle unencodable characters. Options include 'strict' (raise exception), 'ignore' (drop characters), 'replace' (use ?), 'xmlcharrefreplace' (use XML entities), 'backslashreplace' (use Python escape sequences)
+bytes.decode(encoding, errors='strict')
+
+encoding: The source encoding to interpret the bytes
+errors: How to handle undecodable bytes. Same options as encode(), plus 'surrogateescape' for round-tripping binary data
+open(file, mode, encoding=None, errors=None)
+
+encoding: Always specify explicitly for text mode ('r', 'w'). Use 'utf-8' as default, 'utf-8-sig' to handle BOM automatically
+errors: Same options as encode()/decode()
+chardet.detect(byte_string)
+
+Returns a dictionary with 'encoding' (detected encoding name), 'confidence' (0.0 to 1.0), and 'language' (detected language if applicable)
+Higher confidence values indicate more reliable detection
+Short texts yield lower confidence; prefer explicit encoding when possibl
