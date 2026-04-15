@@ -1,0 +1,27 @@
+When working with tokenization in Python, these are the essential functions and their most important parameters:
+
+str.split(sep=None)
+
+sep: The delimiter string. When None (default), splits on any whitespace and removes empty strings from the result. Useful for basic whitespace tokenization.
+nltk.tokenize.word_tokenize(text, language='english')
+
+text: The input string to tokenize
+language: Language for the Punkt tokenizer. Affects sentence boundary detection and abbreviation handling. Supports 17 languages including English, German, French, and Spanish.
+nltk.tokenize.TreebankWordTokenizer().tokenize(text)
+
+text: The input string to tokenize. Returns tokens following Penn Treebank conventions: splits contractions, separates punctuation, and normalizes quotes and brackets.
+spacy.load(name)
+
+name: Model name (e.g., 'en_core_web_sm', 'en_core_web_lg'). Larger models provide better accuracy but require more memory. The tokenizer is included in all models.
+nlp(text) (spaCy Doc object)
+
+Returns a Doc object where each Token has attributes: text (string), pos_ (part-of-speech), is_punct (punctuation flag), is_stop (stop word flag), lemma_ (base form).
+jieba.cut(text, cut_all=False)
+
+text: Chinese text to segment
+cut_all: When True, uses full mode (all possible segmentations). When False (default), uses accurate mode (most likely segmentation). Accurate mode is preferred for most NLP tasks.
+re.sub(pattern, replacement, text)
+
+pattern: Regular expression to match
+replacement: String or function to replace matches. Use r' \1 ' to surround captured groups with spaces, useful for separating punctuation.
+text: Input string. Essential for building custom tokenizers with punctuation handling.
